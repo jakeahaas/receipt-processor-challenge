@@ -1,11 +1,7 @@
 package receipt
 
-import (
-	"github.com/google/uuid"
-)
-
 type Receipt struct {
-	ID           uuid.UUID
+	ID           string
 	Retailer     string
 	PurchaseDate string
 	PurchaseTime string
@@ -15,5 +11,5 @@ type Receipt struct {
 
 type Item struct {
 	ShortDescription string
-	Price            float32
+	Price            string
 }
