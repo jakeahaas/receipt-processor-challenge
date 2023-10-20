@@ -1,4 +1,4 @@
-module github.com/RECEIPT-PROCESSOR-CHALLENGE
+module github.com/jakeahaas/receipt-processor-challenge
 
 go 1.21.3
 
