@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"github.com/RECEIPT-PROCESSOR-CHALLENGE/components/schemas"
+	"github.com/jakeahaas/receipt-processor-challenge/components/schemas"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"math"
@@ -14,12 +14,12 @@ var receipts = []receipt.Receipt{}
 
 func main() {
 	router := gin.Default()
-	router.POST("/receipts/process", postReceipt)
+	router.POST("/receipts/process", processReceipt)
 	router.GET("/receipts/:id/points", findReceipt)
 	router.Run("localhost:8080")
 }
 
-func postReceipt(c *gin.Context) {
+func processReceipt(c *gin.Context) {
 	var newReceipt receipt.Receipt
 	if err := c.BindJSON(&newReceipt); err != nil {
 		c.JSON(http.StatusBadRequest, "The receipt is invalid")
@@ -62,7 +62,7 @@ func scoreReceipt(receipt receipt.Receipt, c *gin.Context) {
 	if (cents == ".25" || cents == ".50" || cents == ".75") {
 		receipt.Points.Points += 25
 	}
-	//if cents ends in 00, its a round dollar amount and thus a multiple of .25
+	//if amount ends in .00, its a round dollar amount and thus a multiple of .25 (so +50 + 25)
 	if (cents == ".00") {
 		receipt.Points.Points += 75
 	}
@@ -81,15 +81,15 @@ func scoreReceipt(receipt receipt.Receipt, c *gin.Context) {
 			receipt.Points.Points += int64(math.Round(( price * float64(.2) ) + .5))
 		}
 	}
-	//if purchase day is odd
+	// //if purchase day is odd
 	tempNum := receipt.PurchaseDate[len(receipt.PurchaseDate) - 1:]
 	if (tempNum == "1" || tempNum == "3" || tempNum == "5" || tempNum == "7" || tempNum == "9") {
 		receipt.Points.Points += 6
 	}
-	//TODO check if purchase is after 2:00 PM and before 4:00 PM
+	//check if purchase is after 2:00 PM and before 4:00 PM
 	purchaseHour := receipt.PurchaseTime[0:2]
 	if purchaseHour == "14" || purchaseHour == "15" {
 		receipt.Points.Points += 10
 	}
-	c.JSON(http.StatusOK, receipt.Points)
+	c.JSON(http.StatusOK, receipt)
 }

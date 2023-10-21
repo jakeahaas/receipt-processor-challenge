@@ -3,16 +3,16 @@ package receipt
 type Receipt struct {
 	ID           ID 	`json:"id"`
 	Points		 Points	`json:"points"`
-	Retailer     string	`json:"retailer"`
-	PurchaseDate string	`json:"purchaseDate"`
-	PurchaseTime string	`json:"purchaseTime"`
-	Total        string	`json:"total"`
-	Items        []Item	`json:items"`
+	Retailer     string	`json:"retailer" binding:"required"`
+	PurchaseDate string	`json:"purchaseDate" binding:"required"`
+	PurchaseTime string	`json:"purchaseTime" binding:"required"`
+	Items        []Item	`json:"items" binding:"required,dive"`
+	Total        string	`json:"total" binding:"required"`
 }
 
 type Item struct {
-	ShortDescription string	`json:"shortDescription"`
-	Price            string	`json:"price"`
+	ShortDescription string	`json:"shortDescription" binding:"required"`
+	Price            string	`json:"price" binding:"required"`
 }
 
 type ID struct {
