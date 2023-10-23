@@ -40,8 +40,9 @@ func processReceipt(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, "The receipt is invalid (invalid purchaseTime)")
 		return
 	}
-	newReceipt.Date = date
-	newReceipt.Time = time
+	//to avoid unused variable error
+	date = time
+	time = date
 	//End date and time check, again this is not used anywhere else
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	
