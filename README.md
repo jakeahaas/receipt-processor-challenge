@@ -1,6 +1,6 @@
 # receipt-processor-challenge
 
-For this receipt processor challenge I used GoLang (had never used this language before) with no other other languages.
+For this receipt processor challenge I used Go (had never used this language before) with no other other languages.
 
 Since this challenge was done in GoLang and the engineer evaluating the submission has an environment for GoLang setup already, the use of this program is simple.  The server is set to run on localhost:8080, but could be changed by editing the string with the desired input on line 20 in receiptProcessor.go.  To run, open a terminal in the receipt-processor-challenge folder and type in "go run ."
 
