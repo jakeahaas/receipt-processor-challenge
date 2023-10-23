@@ -1,8 +1,5 @@
 package receipt
 
-import (
-	"time"
-)
 type Receipt struct {
 	ID          	ID 			`json:"id"`
 	Points		 	Points		`json:"points"`
@@ -11,8 +8,6 @@ type Receipt struct {
 	PurchaseTime 	string		`json:"purchaseTime" binding:"required"`
 	Items        	[]Item		`json:"items" binding:"required,dive"`
 	Total        	float64		`json:"total,string" binding:"required"`
-	Date		 	time.Time	//This is only for format verification
-	Time		 	time.Time	//This is only for format verification
 }
 
 type Item struct {
