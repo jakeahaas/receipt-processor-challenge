@@ -1,18 +1,23 @@
 package receipt
 
+import (
+	"time"
+)
 type Receipt struct {
-	ID           ID 	`json:"id"`
-	Points		 Points	`json:"points"`
-	Retailer     string	`json:"retailer"`
-	PurchaseDate string	`json:"purchaseDate"`
-	PurchaseTime string	`json:"purchaseTime"`
-	Total        string	`json:"total"`
-	Items        []Item	`json:items"`
+	ID          	ID 			`json:"id"`
+	Points		 	Points		`json:"points"`
+	Retailer    	string		`json:"retailer" binding:"required"`
+	PurchaseDate 	string		`json:"purchaseDate" binding:"required"`
+	PurchaseTime 	string		`json:"purchaseTime" binding:"required"`
+	Items        	[]Item		`json:"items" binding:"required,dive"`
+	Total        	float64		`json:"total,string" binding:"required"`
+	Date		 	time.Time	//This is only for format verification
+	Time		 	time.Time	//This is only for format verification
 }
 
 type Item struct {
-	ShortDescription string	`json:"shortDescription"`
-	Price            string	`json:"price"`
+	ShortDescription string	`json:"shortDescription" binding:"required"`
+	Price            float64	`json:"price,string" binding:"required"`
 }
 
 type ID struct {
