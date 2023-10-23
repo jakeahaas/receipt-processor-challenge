@@ -5,7 +5,7 @@ For this receipt processor challenge I used GoLang (had never used this language
 Since this challenge was done in GoLang and the engineer evaluating the submission has an environment for GoLang setup already, the use of this program is simple.  The server is set to run on localhost:8080, but could be changed by editing the string with the desired input on line 20 in receiptProcessor.go.  To run, open a terminal in the receipt-processor-challenge folder and type in "go run ."
 
 For testing this I was using Postman with headers Key:"Content-Type" Value:"application/json".  The body of the request is input as a raw JSON type of the format specified in the challenge:
-
+```json
 {
   "retailer": "Target",
   "purchaseDate": "2022-01-01",
@@ -30,6 +30,7 @@ For testing this I was using Postman with headers Key:"Content-Type" Value:"appl
   ],
   "total": "35.35"
 }
+```
 
 The date and time must be in the same format as above (yyyy/mm/dd and hh/mm in 24 hour time)
 Another assumption is that the score is +10 if the time is after 2:00 PM (including 2:00 PM) and before 4:00PM (not including 4:00 PM)
