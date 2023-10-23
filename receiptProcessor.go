@@ -12,6 +12,7 @@ import (
 
 var receipts = []receipt.Receipt{}
 
+//Main function runs the router to process endpoints
 func main() {
 	router := gin.Default()
 	router.POST("/receipts/process", processReceipt)
@@ -19,6 +20,7 @@ func main() {
 	router.Run("localhost:8080")
 }
 
+//Tries to add the receipt to the receipts array
 func processReceipt(c *gin.Context) {
 	var newReceipt receipt.Receipt
 	if err := c.BindJSON(&newReceipt); err != nil {
@@ -26,6 +28,7 @@ func processReceipt(c *gin.Context) {
 		return
 	}
 
+	
 	var newID receipt.ID
 	newID.ID = uuid.New().String()
 	newReceipt.ID.ID = newID.ID
@@ -91,5 +94,5 @@ func scoreReceipt(receipt receipt.Receipt, c *gin.Context) {
 	if purchaseHour == "14" || purchaseHour == "15" {
 		receipt.Points.Points += 10
 	}
-	c.JSON(http.StatusOK, receipt)
+	c.JSON(http.StatusOK, receipt.Points)
 }
