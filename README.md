@@ -4,7 +4,7 @@ For this receipt processor challenge I used GoLang (had never used this language
 
 Since this challenge was done in GoLang and the engineer evaluating the submission has an environment for GoLang setup already, the use of this program is simple.  The server is set to run on localhost:8080, but could be changed by editing the string with the desired input on line 20 in receiptProcessor.go.  To run, open a terminal in the receipt-processor-challenge folder and type in "go run ."
 
-For testing this I was using Postman with headers Key:"Content-Type" Value:"application/json".  The urls I have been using is http://localhost:8080/receipts/process and http://localhost:8080/receipts/{id}/points (where id is the receipt id desired).  The body of the request is input as a raw JSON type of the format specified in the challenge:
+For testing this I was using Postman with headers Key:"Content-Type" Value:"application/json".  The urls I have been using are http://localhost:8080/receipts/process and http://localhost:8080/receipts/{id}/points (where id is the receipt id desired).  The body of the request is input as a raw JSON type of the format specified in the challenge:
 ```json
 {
   "retailer": "Target",
